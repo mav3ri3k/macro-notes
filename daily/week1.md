@@ -1,4 +1,5 @@
 [29 May]
+
 - Testing wasmtime api -> This runs in same process as the compiler ( it would likely have to be separate process )
     - Examples make sense 
 - Built a simple proc macro at [commit](https://github.com/mav3ri3k/proc-macro-server/commit/3c7ade5490473d8913a7db32bba22644f0e38b21)
@@ -10,6 +11,7 @@
     - Currently naively building proc macro to `--target wasm32-unknown-unknown` builds without error but does not produce output
 
 [30 May]
+
 - [Zulip Message](https://rust-lang.zulipchat.com/#narrow/stream/131828-t-compiler/topic/wasm.20proc.20macros/near/291100839) provides more context for previous ques last day.
     > The main bits I remember not being sure about from when I last looked into this were mostly how to get rustc to build a proper .wasm file for a proc-macro crate. IIRC from some conversations with @eddyb there's currently some hard-coded flags to prevent rustc from building anything other than a cstaticlib for proc-macro, which needs to be changed, and then some work to the loader could be done to force-loading proc-macro crates with the given target.
 Find out about these flags.
@@ -39,6 +41,7 @@ Observations:
 I would like to know ideas/thoughts around general implementation details as in how people expect wasm proc_macro to behave or be implemented.
 
 [31 May]
+
 Thoughts on how the implementation should look like
 [bjorn3](https://rust-lang.zulipchat.com/#narrow/stream/421156-gsoc/topic/Project.3A.20Sandboxed.20and.20Deterministic.20Proc.20Macro.20using.20Wasm/near/441542623)
 >I did personally expect the wasm proc macros to use an entirely new target with it's own abi. This way for example printing to stdout/stderr and reading env vars could be supported. wasm32-unknown-unknown can't support either as it has to assume that there is no environment to implement this functionality.
