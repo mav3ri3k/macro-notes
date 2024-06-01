@@ -6,6 +6,7 @@
       {
         "id": "5bd96c592a960bec",
         "type": "tabs",
+        "dimension": 63.61256544502618,
         "children": [
           {
             "id": "f56e831d4b25129c",
@@ -13,8 +14,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Welcome.md",
-                "mode": "source",
+                "file": "daily/week1.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -24,6 +25,7 @@
       {
         "id": "56fc46ce2e626f3d",
         "type": "tabs",
+        "dimension": 36.38743455497382,
         "children": [
           {
             "id": "db207387cf20e920",
@@ -83,7 +85,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 216.5
+    "width": 200
   },
   "right": {
     "id": "a760335ebd44f062",
@@ -99,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Welcome.md",
+                "file": "daily/week1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Welcome.md",
+                "file": "daily/week1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Welcome.md"
+                "file": "daily/week1.md"
               }
             }
           }
@@ -160,8 +162,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "4e54ff6a44832273",
+  "active": "f56e831d4b25129c",
   "lastOpenFiles": [
-    "Welcome.md"
+    "daily/alex.md",
+    "Compiler-test.md",
+    "Welcome.md",
+    "compiler-test.md"
   ]
 }
