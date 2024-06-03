@@ -81,12 +81,49 @@ What does this even mean ??
     Why is it called `rustc_macro`. There exist `rustc_macro` and `rustc_expand`. I have currently only checked `rustc_expeand` which conveniently has a file named `proc_macro_server.rs`. :cry: 
     It should be `rustc_expand` [as mentioned in the compiler](https://arc.net/l/quote/ybomdhve). 
     [Link to full guide page if prev quote link breaks](https://rustc-dev-guide.rust-lang.org/macro-expansion.html?highlight=macro#macro-expansion)
+    - [Tracking issue for RFC 1566: Procedural macros #38356](https://github.com/rust-lang/rust/issues/38356): Leaving it here so I don't forget.
 
 ## Step 3
 Focus on this step at the moment. **Targets:**
-- [ ] Identify functions exported by the server
+- [x] Identify functions exported by the server
 - [ ] Build mock setup. [Nice little blog I found](https://petermalmgren.com/serverside-wasm-data/) 
-    - [ ] A lib crate accepts an integer and returns an integer.
+    - [x] A lib crate accepts an integer and returns an integer.
     - [ ] Identify what `[#proc_macro]` does ? May be helpful in identifying **Step 2**
-    - [ ] Export host functions through wasmtime api for sending integer between sever and client.
+    - [x] Export host functions through wasmtime api for sending integer between sever and client.
 
+[ 1 June ]
+# Mostly learning day
+- Learned Git! :celebration:. Was not bad since I have been using sappling-scm. But god does the ui in sp look good. I don't like git branches.
+- Checked out progress on [wasm-c-api](https://doc.rust-lang.org/beta/unstable-book/compiler-flags/wasm-c-abi.html). I don't think it would pose a problem as of now. It mostly affects not being able to inter-op between different wasi specs.
+- Found funny [video](https://www.youtube.com/watch?v=OZnPY6xptjg&t=506s&pp=ygUMZGF2aWQgdG9sbmF5). The duo is funny as hell :lol:.
+- Did some experiments with `where` keyword. New toy I found reading `proc_macro` code.
+- Read [comment by eddyb](https://github.com/rust-lang/rust/issues/54722#issuecomment-488386448). The discussion is not very relevant but the comment clarifies overarching design. Very helpful in understand the code.
+- First commit [introducing proc_macro bridge](https://github.com/mav3ri3k/rust/commit/e305994beb1347e2fcadf5c84acec60fb6902551). A lot of changes to various other parts of the compiler. :face_with_monocle: 
+
+[ 2 June ] 
+# Big W
+Compiler side, the expansion function lives at `/rust/compiler/rustc_expand/src/proc_macro.rs`.
+I mean I knew this but this time reading it makes and sense. I can actually **read the code** now.
+Yipee!
+
+# Small little hiccup
+There is a `TokenStream` definition at `compiler/rustc_ast` which has different impl 
+And one at `library/proc_macro::TokenStream` to be consumed by the proc_macro. 
+Now it based on `bridge::client::TokenStream` but I can not seem to find where `TokenStream` is defined in `client.rs`.
+:salute: Good luck finding that!
+
+# Tit-bit
+context: cx, ctx ( this might be trivial but I have never quite seen it )
+
+# Another W to end the day
+My goal, for every invocation of a bang_proc_macro, it emits same expansion
+- My lsp stopped because it could not parse some manifest in some rustbook folder,
+    I don't know why it is even need when I have set my config for compiler
+    So finally went around reading the Cargo.toml file, made some changes. Now it works. ( deleted everything related to rustdoc ).
+- [This is the entry point for bang_proc_macro](https://github.com/mav3ri3k/rust/blob/20be84a7e62af0a623af4bfb75df6d30cb39d6d0/compiler/rustc_expand/src/proc_macro.rs#L48)
+    It required changes to the `run` function for `self.client.run(&strategy, server, input, proc_macro_backtrace)`
+    Now if you will do around finding definition for this function. It does not live in `/proc_macro/bridge/client.rs` which you would expect.
+    It lives in `/proc_macro/bridge/server.rs` which is interesting.
+    Then the `run` function calls `run_server()` which does main work.
+    What I did was not a proper changes but at [the last implicit return](https://github.com/mav3ri3k/rust/blob/20be84a7e62af0a623af4bfb75df6d30cb39d6d0/library/proc_macro/src/bridge/server.rs#L388): `Result::decode(&mut &buf[..], &mut dispatcher.handle_store)`. I changed it to always return same `a + b`.
+    The compiler was not particularly happy with this. It does not expand correctly and throws some soft errors but it works with `cargo expand` ( little cargo helper command by dtolnay ) and that all I care about. 
