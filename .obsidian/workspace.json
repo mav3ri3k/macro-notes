@@ -8,18 +8,43 @@
         "type": "tabs",
         "children": [
           {
-            "id": "f56e831d4b25129c",
+            "id": "db73e0d3c9c7a1b4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "daily/week1.md",
+                "file": "list.md",
                 "mode": "preview",
                 "source": false
               }
             }
+          },
+          {
+            "id": "91257c5b17ca2d57",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "bookmarks.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "230f40ea50fe2655",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "maybe.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -58,7 +83,7 @@
             }
           },
           {
-            "id": "6a9ad69420576907",
+            "id": "be905283ec1c5ac7",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -69,8 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "a760335ebd44f062",
@@ -86,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "daily/week1.md",
+                "file": "maybe.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "daily/week1.md",
+                "file": "maybe.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "daily/week1.md"
+                "file": "maybe.md"
               }
             }
           }
@@ -147,8 +171,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f56e831d4b25129c",
+  "active": "230f40ea50fe2655",
   "lastOpenFiles": [
+    "design.md",
+    "list.md",
     "daily/alex.md",
     "Compiler-test.md",
     "Welcome.md",
